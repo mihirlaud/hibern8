@@ -1,8 +1,20 @@
 [gd_scene format=3 uid="uid://c1m0nj771pa4x"]
 
+[ext_resource type="Script" uid="uid://bee08gubq450v" path="res://scripts/game_end.gd" id="1_h23gu"]
+
 [node name="GameEnd" type="Node2D" unique_id=1746102697]
+script = ExtResource("1_h23gu")
 
 [node name="Label" type="Label" parent="." unique_id=782566115]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "GAME END"
+
+[node name="ReplayButton" type="Button" parent="." unique_id=506034076]
+offset_left = 27.0
+offset_top = 52.0
+offset_right = 139.0
+offset_bottom = 112.0
+text = "Play Again?"
+
+[connection signal="pressed" from="ReplayButton" to="." method="_on_replay_button_pressed"]

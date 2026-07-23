@@ -5,11 +5,9 @@ extends Node2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func _on_start_button_pressed() -> void:
-	GameState.init_game()
-	get_tree().change_scene_to_file("res://scenes/day-start.tscn")
+func _on_replay_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
