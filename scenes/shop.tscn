@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ggsyh4qb3vdw"]
+
+[ext_resource type="Script" uid="uid://dlmqji8u5nek7" path="res://scripts/shop.gd" id="1_lx5au"]
+
+[node name="Shop" type="Node2D" unique_id=415007440]
+script = ExtResource("1_lx5au")
+
+[node name="Label" type="Label" parent="." unique_id=1014763594]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "SHOP"
+
+[node name="NextButton" type="Button" parent="." unique_id=2075633568]
+offset_left = 39.0
+offset_top = 80.0
+offset_right = 185.0
+offset_bottom = 126.0
+text = "Next"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

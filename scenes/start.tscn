@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://mecy25x51hnw"]
+
+[ext_resource type="Script" uid="uid://bhmpmknlpmmx8" path="res://scripts/start.gd" id="1_jaeev"]
+
+[node name="Start" type="Node2D" unique_id=168624120]
+script = ExtResource("1_jaeev")
+
+[node name="Label" type="Label" parent="." unique_id=2114199792]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "START"
+
+[node name="StartButton" type="Button" parent="." unique_id=1919545777]
+offset_left = 39.0
+offset_top = 80.0
+offset_right = 185.0
+offset_bottom = 126.0
+text = "Start"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

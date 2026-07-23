@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c1m0nj771pa4x"]
+
+[node name="GameEnd" type="Node2D" unique_id=1746102697]
+
+[node name="Label" type="Label" parent="." unique_id=782566115]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GAME END"

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bbusv1ss1jg63"]
+
+[ext_resource type="Script" uid="uid://bobu7vi414kr" path="res://scripts/generation.gd" id="1_1bwju"]
+
+[node name="Generation" type="Node2D" unique_id=511495343]
+script = ExtResource("1_1bwju")
+
+[node name="DayTimer" type="Timer" parent="." unique_id=1267275502]
+wait_time = 10.0
+one_shot = true
+
+[node name="Label" type="Label" parent="." unique_id=950481747]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GENERATION"
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1321415644]
+offset_left = -2.0
+offset_top = 34.0
+offset_right = 38.0
+offset_bottom = 57.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
