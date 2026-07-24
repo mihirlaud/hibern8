@@ -6,6 +6,11 @@
 [node name="GameEnd" type="Node2D" unique_id=1746102697]
 script = ExtResource("1_h23gu")
 
+[node name="BG" type="ColorRect" parent="." unique_id=1612091539]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+
 [node name="Label" type="Label" parent="." unique_id=782566115]
 offset_right = 40.0
 offset_bottom = 23.0
