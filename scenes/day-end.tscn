@@ -17,4 +17,10 @@ offset_right = 185.0
 offset_bottom = 126.0
 text = "Next"
 
+[node name="ResultsLabel" type="Label" parent="." unique_id=487365161]
+offset_left = 286.0
+offset_top = 18.0
+offset_right = 607.0
+offset_bottom = 126.0
+
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

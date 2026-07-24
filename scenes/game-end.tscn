@@ -17,4 +17,10 @@ offset_right = 139.0
 offset_bottom = 112.0
 text = "Play Again?"
 
+[node name="ResultsLabel" type="Label" parent="." unique_id=1230276168]
+offset_left = 286.0
+offset_top = 18.0
+offset_right = 607.0
+offset_bottom = 126.0
+
 [connection signal="pressed" from="ReplayButton" to="." method="_on_replay_button_pressed"]

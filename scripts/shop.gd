@@ -64,10 +64,7 @@ func _process(delta: float) -> void:
 	set_button_enabled(power_storage_upgrade_button, GameState.Upgrades.STORAGE, GameState.Resources.POWER)
 
 func _on_next_button_pressed() -> void:
-	if GameState.current_day == GameState.TOTAL_NUM_DAYS:
-		get_tree().change_scene_to_file("res://scenes/game-end.tscn")
-	else:
-		get_tree().change_scene_to_file("res://scenes/day-start.tscn")
+	get_tree().change_scene_to_file("res://scenes/day-start.tscn")
 
 
 func _on_sell_food_button_pressed() -> void:
