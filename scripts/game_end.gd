@@ -1,7 +1,10 @@
-extends Node2D
+extends Control
 
-@onready var results_label: Label = $ResultsLabel
+@onready var label: RichTextLabel = $BG/MarginContainer/VBoxContainer/Label
+@onready var replay_button: Button = $BG/MarginContainer/VBoxContainer/ReplayButton
 
+const DISPLAY_TIME_IN_S = 5.0
+var elapsed_time = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,15 +13,15 @@ func _ready() -> void:
 	var power_days = int(floor(GameState.get_power() / 10.0))
 	var actual_days = min(food_days, water_days, power_days)
 	
-	results_label.text = "Every day, you use 3 cans of food, 3 bottles of water, and 10 kWh of power.\n"
-	results_label.text += "You have " + str(int(floor(GameState.get_food()))) + " cans of food, which will last you " + str(food_days) + " days.\n"
-	results_label.text += "You have " + str(int(floor(GameState.get_water()))) + " bottles of water, which will last you " + str(water_days) + " days.\n"
-	results_label.text += "You have " + str(int(floor(GameState.get_power()))) + " kWh of power, which will last you " + str(power_days) + " days.\n"
-	results_label.text += "You will only survive " + str(actual_days) + " days.\n"
+	label.text = "Winter begins.\n\n"
+	label.text += "You will only survive [b]" + str(actual_days) + "[/b] days.\n"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	elapsed_time += delta
+	label.visible_ratio = min(1.0, elapsed_time / DISPLAY_TIME_IN_S)
+	if elapsed_time >= DISPLAY_TIME_IN_S:
+		replay_button.disabled = false
 
 func _on_replay_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/start.tscn")

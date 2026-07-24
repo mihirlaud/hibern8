@@ -3,26 +3,62 @@
 [ext_resource type="Script" uid="uid://bhmpmknlpmmx8" path="res://scripts/start.gd" id="1_jaeev"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_u80x2"]
 
-[node name="Start" type="Node2D" unique_id=168624120]
+[node name="Start" type="Control" unique_id=107292208]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_jaeev")
 
 [node name="BG" type="ColorRect" parent="." unique_id=701689631]
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
-[node name="Label" type="Label" parent="." unique_id=2114199792]
-offset_right = 40.0
-offset_bottom = 23.0
-theme = ExtResource("2_u80x2")
-text = "START"
+[node name="CenterContainer" type="MarginContainer" parent="." unique_id=148067394]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
 
-[node name="StartButton" type="Button" parent="." unique_id=1919545777]
-offset_left = 39.0
-offset_top = 80.0
-offset_right = 185.0
-offset_bottom = 126.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1877739263]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2114199792]
+layout_mode = 2
+theme = ExtResource("2_u80x2")
+text = "__/\\\\\\________/\\\\\\__/\\\\\\\\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\\\\\\\\\\\\____/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\____/\\\\\\\\\\\\\\\\\\______/\\\\\\\\\\_____/\\\\\\_____/\\\\\\\\\\\\\\\\\\____        
+ _\\/\\\\\\_______\\/\\\\\\_\\/////\\\\\\///__\\/\\\\\\/////////\\\\\\_\\/\\\\\\///////////___/\\\\\\///////\\\\\\___\\/\\\\\\\\\\\\___\\/\\\\\\___/\\\\\\///////\\\\\\__       
+  _\\/\\\\\\_______\\/\\\\\\_____\\/\\\\\\_____\\/\\\\\\_______\\/\\\\\\_\\/\\\\\\_____________\\/\\\\\\_____\\/\\\\\\___\\/\\\\\\/\\\\\\__\\/\\\\\\__\\/\\\\\\_____\\/\\\\\\__      
+   _\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_____\\/\\\\\\_____\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\__\\/\\\\\\\\\\\\\\\\\\\\\\_____\\/\\\\\\\\\\\\\\\\\\\\\\/____\\/\\\\\\//\\\\\\_\\/\\\\\\__\\///\\\\\\\\\\\\\\\\\\/___     
+    _\\/\\\\\\/////////\\\\\\_____\\/\\\\\\_____\\/\\\\\\/////////\\\\\\_\\/\\\\\\///////______\\/\\\\\\//////\\\\\\____\\/\\\\\\\\//\\\\\\\\/\\\\\\___/\\\\\\///////\\\\\\__    
+     _\\/\\\\\\_______\\/\\\\\\_____\\/\\\\\\_____\\/\\\\\\_______\\/\\\\\\_\\/\\\\\\_____________\\/\\\\\\____\\//\\\\\\___\\/\\\\\\_\\//\\\\\\/\\\\\\__/\\\\\\______\\//\\\\\\_   
+      _\\/\\\\\\_______\\/\\\\\\_____\\/\\\\\\_____\\/\\\\\\_______\\/\\\\\\_\\/\\\\\\_____________\\/\\\\\\_____\\//\\\\\\__\\/\\\\\\__\\//\\\\\\\\\\\\_\\//\\\\\\______/\\\\\\__  
+       _\\/\\\\\\_______\\/\\\\\\__/\\\\\\\\\\\\\\\\\\\\\\_\\/\\\\\\\\\\\\\\\\\\\\\\\\\\/__\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_\\/\\\\\\______\\//\\\\\\_\\/\\\\\\___\\//\\\\\\\\\\__\\///\\\\\\\\\\\\\\\\\\/___ 
+        _\\///________\\///__\\///////////__\\/////////////____\\///////////////__\\///________\\///__\\///_____\\/////_____\\/////////_____"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1687772002]
+layout_mode = 2
+theme = ExtResource("2_u80x2")
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1919545777]
+layout_mode = 2
 theme = ExtResource("2_u80x2")
 text = "Start"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

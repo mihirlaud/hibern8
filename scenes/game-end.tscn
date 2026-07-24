@@ -3,33 +3,57 @@
 [ext_resource type="Script" uid="uid://bee08gubq450v" path="res://scripts/game_end.gd" id="1_h23gu"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_vvvhb"]
 
-[node name="GameEnd" type="Node2D" unique_id=1746102697]
+[node name="GameEnd" type="Control" unique_id=672396387]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_h23gu")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1612091539]
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
-[node name="Label" type="Label" parent="." unique_id=782566115]
-offset_right = 40.0
-offset_bottom = 23.0
-theme = ExtResource("2_vvvhb")
-text = "GAME END"
+[node name="MarginContainer" type="MarginContainer" parent="BG" unique_id=1929006542]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
 
-[node name="ReplayButton" type="Button" parent="." unique_id=506034076]
-offset_left = 27.0
-offset_top = 52.0
-offset_right = 139.0
-offset_bottom = 112.0
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer" unique_id=720770721]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="BG/MarginContainer/VBoxContainer" unique_id=557269223]
+layout_mode = 2
+theme = ExtResource("2_vvvhb")
+bbcode_enabled = true
+text = "GAME END"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="BG/MarginContainer/VBoxContainer" unique_id=2119031326]
+layout_mode = 2
+theme = ExtResource("2_vvvhb")
+
+[node name="ReplayButton" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=506034076]
+layout_mode = 2
 theme = ExtResource("2_vvvhb")
 text = "Play Again?"
 
-[node name="ResultsLabel" type="Label" parent="." unique_id=1230276168]
-offset_left = 286.0
-offset_top = 18.0
-offset_right = 607.0
-offset_bottom = 126.0
-theme = ExtResource("2_vvvhb")
-
-[connection signal="pressed" from="ReplayButton" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/ReplayButton" to="." method="_on_replay_button_pressed"]
