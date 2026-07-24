@@ -15,10 +15,6 @@ extends Node2D
 @onready var water_gen_button: Button = $WaterGenButton
 @onready var power_gen_button: Button = $PowerGenButton
 
-var food_generating = false
-var water_generating = false
-var power_generating = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	day_timer.wait_time = GameState.DAY_LENGTH_IN_S
@@ -29,45 +25,45 @@ func _process(delta: float) -> void:
 	GameState.run_gen(delta)
 	
 	timer_label.text = str(round(day_timer.time_left * 10) / 10.0) + " s"
-	food_label.text = "Food: " + str(floor(GameState.food)) + " / " + str(floor(GameState.max_food))
-	water_label.text = "Water: " + str(floor(GameState.water)) + " / " + str(floor(GameState.max_water))
-	power_label.text = "Power: " + str(floor(GameState.power)) + " / " + str(floor(GameState.max_power))
+	food_label.text = "Food: " + str(floor(GameState.get_food())) + " / " + str(floor(GameState.get_food_max()))
+	water_label.text = "Water: " + str(floor(GameState.get_water())) + " / " + str(floor(GameState.get_water_max()))
+	power_label.text = "Power: " + str(floor(GameState.get_power())) + " / " + str(floor(GameState.get_power_max()))
 
 func _on_day_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/day-end.tscn")
 
 func _on_food_gen_button_pressed() -> void:
-	if not food_generating:
-		food_gen_timer.wait_time = GameState.manual_food_gen_timer
+	if not GameState.is_food_generating():
+		food_gen_timer.wait_time = GameState.food_timer()
 		food_gen_timer.start()
-		food_generating = true
+		GameState.set_food_generating(true)
 		food_gen_button.text = "Canning food..."
 
 func _on_food_gen_timer_timeout() -> void:
-	food_generating = false
-	GameState.food += GameState.manual_food_gen
+	GameState.set_food_generating(false)
+	GameState.manual_gen_food()
 	food_gen_button.text = "Can Food"
 
 func _on_water_gen_button_pressed() -> void:
-	if not water_generating:
-		water_gen_timer.wait_time = GameState.manual_water_gen_timer
+	if not GameState.is_water_generating():
+		water_gen_timer.wait_time = GameState.water_timer()
 		water_gen_timer.start()
-		water_generating = true
+		GameState.set_water_generating(true)
 		water_gen_button.text = "Bottling water..."
 
 func _on_water_gen_timer_timeout() -> void:
-	water_generating = false
-	GameState.water += GameState.manual_water_gen
+	GameState.set_water_generating(false)
+	GameState.manual_gen_water()
 	water_gen_button.text = "Bottle water"
 
 func _on_power_gen_button_pressed() -> void:
-	if not power_generating:
-		power_gen_timer.wait_time = GameState.manual_power_gen_timer
+	if not GameState.is_power_generating():
+		power_gen_timer.wait_time = GameState.power_timer()
 		power_gen_timer.start()
-		power_generating = true
+		GameState.set_power_generating(true)
 		power_gen_button.text = "Generating power..."
 
 func _on_power_gen_timer_timeout() -> void:
-	power_generating = false
-	GameState.power += GameState.manual_power_gen
+	GameState.set_power_generating(false)
+	GameState.manual_gen_power()
 	power_gen_button.text = "Generate power"

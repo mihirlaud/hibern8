@@ -62,7 +62,88 @@ offset_top = 49.0
 offset_right = 791.0
 offset_bottom = 72.0
 
+[node name="FoodPassiveUpgradeButton" type="Button" parent="." unique_id=475322819]
+offset_left = 142.81195
+offset_top = 323.2323
+offset_right = 379.0
+offset_bottom = 404.0
+text = "Upgrade Food
+Passive Gen"
+
+[node name="FoodManualUpgradeButton" type="Button" parent="." unique_id=814890174]
+offset_left = 400.0
+offset_top = 326.0
+offset_right = 602.0
+offset_bottom = 407.0
+text = "Upgrade Food
+Manual Gen"
+
+[node name="FoodStorageUpgradeButton" type="Button" parent="." unique_id=339811370]
+offset_left = 643.0
+offset_top = 329.0
+offset_right = 854.0
+offset_bottom = 406.0
+text = "Upgrade Food
+Storage"
+
+[node name="WaterPassiveUpgradeButton" type="Button" parent="." unique_id=252126099]
+offset_left = 144.0
+offset_top = 436.0
+offset_right = 375.18805
+offset_bottom = 523.0
+text = "Upgrade Water
+Passive Gen"
+
+[node name="WaterManualUpgradeButton" type="Button" parent="." unique_id=1867201579]
+offset_left = 407.0
+offset_top = 438.0
+offset_right = 601.0
+offset_bottom = 523.0
+text = "Upgrade Water
+Manual Gen"
+
+[node name="WaterStorageUpgradeButton" type="Button" parent="." unique_id=688846907]
+offset_left = 645.0
+offset_top = 434.0
+offset_right = 856.0
+offset_bottom = 520.0
+text = "Upgrade Water
+Storage"
+
+[node name="PowerPassiveUpgradeButton" type="Button" parent="." unique_id=659540335]
+offset_left = 144.0
+offset_top = 547.0
+offset_right = 378.0
+offset_bottom = 626.0
+text = "Upgrade Power
+Passive Gen"
+
+[node name="PowerManualUpgradeButton" type="Button" parent="." unique_id=1593698858]
+offset_left = 408.0
+offset_top = 548.0
+offset_right = 603.0
+offset_bottom = 626.0
+text = "Upgrade Power
+Manual Gen"
+
+[node name="PowerStorageUpgradeButton" type="Button" parent="." unique_id=1247042677]
+offset_left = 646.0
+offset_top = 541.0
+offset_right = 851.0
+offset_bottom = 626.0
+text = "Upgrade Power
+Storage"
+
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="SellFoodButton" to="." method="_on_sell_food_button_pressed"]
 [connection signal="pressed" from="SellWaterButton" to="." method="_on_sell_water_button_pressed"]
 [connection signal="pressed" from="SellPowerButton" to="." method="_on_sell_power_button_pressed"]
+[connection signal="pressed" from="FoodPassiveUpgradeButton" to="." method="_on_food_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="FoodManualUpgradeButton" to="." method="_on_food_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="FoodStorageUpgradeButton" to="." method="_on_food_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="WaterPassiveUpgradeButton" to="." method="_on_water_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="WaterManualUpgradeButton" to="." method="_on_water_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="WaterStorageUpgradeButton" to="." method="_on_water_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="PowerPassiveUpgradeButton" to="." method="_on_power_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="PowerManualUpgradeButton" to="." method="_on_power_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="PowerStorageUpgradeButton" to="." method="_on_power_storage_upgrade_button_pressed"]
