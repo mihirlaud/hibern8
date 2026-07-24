@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbusv1ss1jg63"]
 
 [ext_resource type="Script" uid="uid://bobu7vi414kr" path="res://scripts/generation.gd" id="1_1bwju"]
+[ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_tqrgb"]
 
 [node name="Generation" type="Node2D" unique_id=511495343]
 script = ExtResource("1_1bwju")
@@ -12,6 +13,7 @@ one_shot = true
 [node name="Label" type="Label" parent="." unique_id=950481747]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = ExtResource("2_tqrgb")
 text = "GENERATION"
 
 [node name="TimerLabel" type="Label" parent="." unique_id=1321415644]
@@ -19,6 +21,7 @@ offset_left = -2.0
 offset_top = 34.0
 offset_right = 38.0
 offset_bottom = 57.0
+theme = ExtResource("2_tqrgb")
 metadata/_edit_use_anchors_ = true
 
 [node name="FoodLabel" type="Label" parent="." unique_id=1587798198]
@@ -26,24 +29,28 @@ offset_left = 26.0
 offset_top = 58.0
 offset_right = 66.0
 offset_bottom = 81.0
+theme = ExtResource("2_tqrgb")
 
 [node name="WaterLabel" type="Label" parent="." unique_id=1594519762]
 offset_left = 33.0
 offset_top = 111.0
 offset_right = 73.0
 offset_bottom = 134.0
+theme = ExtResource("2_tqrgb")
 
 [node name="PowerLabel" type="Label" parent="." unique_id=1342417266]
 offset_left = 35.0
 offset_top = 183.0
 offset_right = 75.0
 offset_bottom = 206.0
+theme = ExtResource("2_tqrgb")
 
 [node name="FoodGenButton" type="Button" parent="." unique_id=262432988]
 offset_left = 56.0
 offset_top = 237.0
 offset_right = 188.0
 offset_bottom = 292.0
+theme = ExtResource("2_tqrgb")
 text = "Can Food"
 
 [node name="WaterGenButton" type="Button" parent="." unique_id=884517857]
@@ -51,6 +58,7 @@ offset_left = 261.0
 offset_top = 238.0
 offset_right = 393.0
 offset_bottom = 293.0
+theme = ExtResource("2_tqrgb")
 text = "Bottle Water"
 
 [node name="PowerGenButton" type="Button" parent="." unique_id=317861278]
@@ -58,6 +66,7 @@ offset_left = 439.0
 offset_top = 240.0
 offset_right = 571.0
 offset_bottom = 295.0
+theme = ExtResource("2_tqrgb")
 text = "Generate Power"
 
 [node name="FoodGenTimer" type="Timer" parent="." unique_id=466515332]

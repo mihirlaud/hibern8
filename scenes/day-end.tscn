@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqkxeokphorm"]
 
 [ext_resource type="Script" uid="uid://m0nwp2cvlg8w" path="res://scripts/day_end.gd" id="1_fooi0"]
+[ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_spymd"]
 
 [node name="DayEnd" type="Node2D" unique_id=365168011]
 script = ExtResource("1_fooi0")
@@ -8,6 +9,7 @@ script = ExtResource("1_fooi0")
 [node name="Label" type="Label" parent="." unique_id=710701904]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = ExtResource("2_spymd")
 text = "DAY END"
 
 [node name="NextButton" type="Button" parent="." unique_id=2004397103]
@@ -15,6 +17,7 @@ offset_left = 39.0
 offset_top = 80.0
 offset_right = 185.0
 offset_bottom = 126.0
+theme = ExtResource("2_spymd")
 text = "Next"
 
 [node name="ResultsLabel" type="Label" parent="." unique_id=487365161]
@@ -22,5 +25,6 @@ offset_left = 286.0
 offset_top = 18.0
 offset_right = 607.0
 offset_bottom = 126.0
+theme = ExtResource("2_spymd")
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

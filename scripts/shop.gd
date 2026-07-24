@@ -20,7 +20,7 @@ func _ready() -> void:
 	pass
 
 func set_text(button, resource, upgrade_type, amount, resource_unit, cost):
-	button.text = "Upgrade " + resource + " " + upgrade_type + "\nto " + str(amount) + " " + resource_unit + "\n$" + str(cost)
+	button.text = "Upgrade " + resource + " " + upgrade_type + "\nto " + str(amount) + " " + resource_unit + "\n$" + str(int(cost))
 
 func set_button_enabled(button, upgrade_type, resource):
 	if GameState.upgrades[upgrade_type][resource] == GameState.MAX_UPGRADE_LEVEL:
@@ -29,10 +29,10 @@ func set_button_enabled(button, upgrade_type, resource):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	food_label.text = "Food: " + str(floor(GameState.get_food())) + " cans"
-	water_label.text = "Water: " + str(floor(GameState.get_water())) + " bottles"
-	power_label.text = "Power: " + str(floor(GameState.get_power())) + " kWh"
-	money_label.text = "Money: $" + str(floor(GameState.money))
+	food_label.text = "Food: " + str(int(floor(GameState.get_food()))) + " cans"
+	water_label.text = "Water: " + str(int(floor(GameState.get_water()))) + " bottles"
+	power_label.text = "Power: " + str(int(floor(GameState.get_power()))) + " kWh"
+	money_label.text = "Money: $" + str(int(floor(GameState.money)))
 	
 	set_text(food_passive_upgrade_button, "Food", "Passive Gen", GameState.get_next_food_gen_rate(),
 		"can/s", GameState.cost(GameState.Upgrades.PASSIVE_GEN, GameState.Resources.FOOD))

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cqg6f7i245f0r"]
 
 [ext_resource type="Script" uid="uid://dlhj0klme0ven" path="res://scripts/day_start.gd" id="1_lnhyl"]
+[ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_3pdow"]
 
 [node name="DayStart" type="Node2D" unique_id=1409339621]
 script = ExtResource("1_lnhyl")
@@ -8,6 +9,7 @@ script = ExtResource("1_lnhyl")
 [node name="Label" type="Label" parent="." unique_id=799885675]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = ExtResource("2_3pdow")
 text = "DAY START"
 
 [node name="StartButton" type="Button" parent="." unique_id=428152622]
@@ -15,6 +17,7 @@ offset_left = 39.0
 offset_top = 80.0
 offset_right = 185.0
 offset_bottom = 126.0
+theme = ExtResource("2_3pdow")
 text = "Start"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
