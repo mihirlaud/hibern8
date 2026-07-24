@@ -4,7 +4,7 @@ extends Control
 @onready var results_label: Label = $MarginContainer/VBoxContainer/ResultsLabel
 @onready var next_button: Button = $MarginContainer/VBoxContainer/NextButton
 
-const DISPLAY_TIME_IN_S = 5.0
+const DISPLAY_TIME_IN_S = 4.0
 const WAIT_TIME_IN_S = 1.0
 var elapsed_time = 0.0
 var results = []

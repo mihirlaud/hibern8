@@ -3,7 +3,7 @@ extends Control
 @onready var label: RichTextLabel = $VBoxContainer/VBoxContainer/Label
 @onready var start_button: Button = $VBoxContainer/VBoxContainer/StartButton
 
-const DISPLAY_TIME_IN_S = 5.0
+const DISPLAY_TIME_IN_S = 4.0
 var elapsed_time = 0.0
 
 # Called when the node enters the scene tree for the first time.

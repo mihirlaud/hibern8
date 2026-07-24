@@ -1,21 +1,20 @@
-extends Node2D
+extends Control
 
-@onready var food_label: Label = $FoodLabel
-@onready var water_label: Label = $WaterLabel
-@onready var power_label: Label = $PowerLabel
-@onready var money_label: Label = $MoneyLabel
+@onready var food_label: Label = $MarginContainer2/VBoxContainer/GridContainer/FoodLabel
+@onready var water_label: Label = $MarginContainer2/VBoxContainer/GridContainer/WaterLabel
+@onready var power_label: Label = $MarginContainer2/VBoxContainer/GridContainer/PowerLabel
+@onready var money_label: Label = $MarginContainer2/VBoxContainer/MoneyLabel
 
-@onready var food_passive_upgrade_button: Button = $FoodPassiveUpgradeButton
-@onready var food_manual_upgrade_button: Button = $FoodManualUpgradeButton
-@onready var food_storage_upgrade_button: Button = $FoodStorageUpgradeButton
-@onready var water_passive_upgrade_button: Button = $WaterPassiveUpgradeButton
-@onready var water_manual_upgrade_button: Button = $WaterManualUpgradeButton
-@onready var water_storage_upgrade_button: Button = $WaterStorageUpgradeButton
-@onready var power_passive_upgrade_button: Button = $PowerPassiveUpgradeButton
-@onready var power_manual_upgrade_button: Button = $PowerManualUpgradeButton
-@onready var power_storage_upgrade_button: Button = $PowerStorageUpgradeButton
+@onready var food_passive_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodPassiveUpgradeButton
+@onready var food_manual_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodManualUpgradeButton
+@onready var food_storage_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodStorageUpgradeButton
+@onready var water_passive_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterPassiveUpgradeButton
+@onready var water_manual_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterManualUpgradeButton
+@onready var water_storage_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterStorageUpgradeButton
+@onready var power_passive_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerPassiveUpgradeButton
+@onready var power_manual_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerManualUpgradeButton
+@onready var power_storage_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerStorageUpgradeButton
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
@@ -29,9 +28,9 @@ func set_button_enabled(button, upgrade_type, resource):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	food_label.text = "Food: " + str(int(floor(GameState.get_food()))) + " cans"
-	water_label.text = "Water: " + str(int(floor(GameState.get_water()))) + " bottles"
-	power_label.text = "Power: " + str(int(floor(GameState.get_power()))) + " kWh"
+	food_label.text = "Food: " + str(int(floor(GameState.get_food()))) + " cans (" + str(int(floor(GameState.get_food_max()))) + " max)"
+	water_label.text = "Water: " + str(int(floor(GameState.get_water()))) + " bottles (" + str(int(floor(GameState.get_water_max()))) + " max)"
+	power_label.text = "Power: " + str(int(floor(GameState.get_power()))) + " kWh (" + str(int(floor(GameState.get_power_max()))) + " max)"
 	money_label.text = "Money: $" + str(int(floor(GameState.money)))
 	
 	set_text(food_passive_upgrade_button, "Food", "Passive Gen", GameState.get_next_food_gen_rate(),

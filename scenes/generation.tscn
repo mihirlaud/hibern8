@@ -3,76 +3,98 @@
 [ext_resource type="Script" uid="uid://bobu7vi414kr" path="res://scripts/generation.gd" id="1_1bwju"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_tqrgb"]
 
-[node name="Generation" type="Node2D" unique_id=511495343]
+[node name="Generation" type="Control" unique_id=1744729273]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_1bwju")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1861088957]
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
-[node name="DayTimer" type="Timer" parent="." unique_id=1267275502]
-wait_time = 10.0
-one_shot = true
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1252767799]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -187.5
+offset_bottom = 187.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="Label" type="Label" parent="." unique_id=950481747]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1466417388]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=950481747]
+layout_mode = 2
 theme = ExtResource("2_tqrgb")
-text = "GENERATION"
+text = "Produce resources. "
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TimerLabel" type="Label" parent="." unique_id=1321415644]
-offset_left = -2.0
-offset_top = 34.0
-offset_right = 38.0
-offset_bottom = 57.0
-theme = ExtResource("2_tqrgb")
-metadata/_edit_use_anchors_ = true
-
-[node name="FoodLabel" type="Label" parent="." unique_id=1587798198]
-offset_left = 26.0
-offset_top = 58.0
-offset_right = 66.0
-offset_bottom = 81.0
-theme = ExtResource("2_tqrgb")
-
-[node name="WaterLabel" type="Label" parent="." unique_id=1594519762]
-offset_left = 33.0
-offset_top = 111.0
-offset_right = 73.0
-offset_bottom = 134.0
-theme = ExtResource("2_tqrgb")
-
-[node name="PowerLabel" type="Label" parent="." unique_id=1342417266]
-offset_left = 35.0
-offset_top = 183.0
-offset_right = 75.0
-offset_bottom = 206.0
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=582497885]
+layout_mode = 2
 theme = ExtResource("2_tqrgb")
 
-[node name="FoodGenButton" type="Button" parent="." unique_id=262432988]
-offset_left = 56.0
-offset_top = 237.0
-offset_right = 188.0
-offset_bottom = 292.0
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1719948614]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="FoodGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=262432988]
+layout_mode = 2
 theme = ExtResource("2_tqrgb")
 text = "Can Food"
 
-[node name="WaterGenButton" type="Button" parent="." unique_id=884517857]
-offset_left = 261.0
-offset_top = 238.0
-offset_right = 393.0
-offset_bottom = 293.0
+[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1587798198]
+layout_mode = 2
+theme = ExtResource("2_tqrgb")
+text = "Food: 0 cans"
+
+[node name="WaterGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=884517857]
+layout_mode = 2
 theme = ExtResource("2_tqrgb")
 text = "Bottle Water"
 
-[node name="PowerGenButton" type="Button" parent="." unique_id=317861278]
-offset_left = 439.0
-offset_top = 240.0
-offset_right = 571.0
-offset_bottom = 295.0
+[node name="WaterLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1594519762]
+layout_mode = 2
+theme = ExtResource("2_tqrgb")
+text = "Water: 0 bottles"
+
+[node name="PowerGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=317861278]
+layout_mode = 2
 theme = ExtResource("2_tqrgb")
 text = "Generate Power"
+
+[node name="PowerLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1342417266]
+layout_mode = 2
+theme = ExtResource("2_tqrgb")
+text = "Power: 0 kWh"
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1321415644]
+layout_mode = 2
+theme = ExtResource("2_tqrgb")
+text = "
+0 s"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="FoodGenTimer" type="Timer" parent="." unique_id=466515332]
 one_shot = true
@@ -83,10 +105,14 @@ one_shot = true
 [node name="PowerGenTimer" type="Timer" parent="." unique_id=809197697]
 one_shot = true
 
-[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
-[connection signal="pressed" from="FoodGenButton" to="." method="_on_food_gen_button_pressed"]
-[connection signal="pressed" from="WaterGenButton" to="." method="_on_water_gen_button_pressed"]
-[connection signal="pressed" from="PowerGenButton" to="." method="_on_power_gen_button_pressed"]
+[node name="DayTimer" type="Timer" parent="." unique_id=1267275502]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/FoodGenButton" to="." method="_on_food_gen_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/WaterGenButton" to="." method="_on_water_gen_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/PowerGenButton" to="." method="_on_power_gen_button_pressed"]
 [connection signal="timeout" from="FoodGenTimer" to="." method="_on_food_gen_timer_timeout"]
 [connection signal="timeout" from="WaterGenTimer" to="." method="_on_water_gen_timer_timeout"]
 [connection signal="timeout" from="PowerGenTimer" to="." method="_on_power_gen_timer_timeout"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

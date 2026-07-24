@@ -3,171 +3,237 @@
 [ext_resource type="Script" uid="uid://dlmqji8u5nek7" path="res://scripts/shop.gd" id="1_lx5au"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_xfvoa"]
 
-[node name="Shop" type="Node2D" unique_id=415007440]
+[node name="Shop" type="Control" unique_id=1722286858]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_lx5au")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1251169358]
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
-[node name="Label" type="Label" parent="." unique_id=1014763594]
-offset_right = 40.0
-offset_bottom = 23.0
-theme = ExtResource("2_xfvoa")
-text = "SHOP"
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=64914673]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.5
+offset_right = 186.5
+offset_bottom = 337.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
 
-[node name="NextButton" type="Button" parent="." unique_id=2075633568]
-offset_left = 166.0
-offset_top = 164.0
-offset_right = 312.0
-offset_bottom = 210.0
-theme = ExtResource("2_xfvoa")
-text = "Next"
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=285572396]
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="FoodLabel" type="Label" parent="." unique_id=66111823]
-offset_left = 157.0
-offset_top = 53.0
-offset_right = 197.0
-offset_bottom = 76.0
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=1014763594]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
+text = "Prepare for tomorrow."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="WaterLabel" type="Label" parent="." unique_id=1322587892]
-offset_left = 371.0
-offset_top = 52.0
-offset_right = 411.0
-offset_bottom = 75.0
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/VBoxContainer" unique_id=1456362914]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 
-[node name="PowerLabel" type="Label" parent="." unique_id=271492164]
-offset_left = 574.0
-offset_top = 61.0
-offset_right = 614.0
-offset_bottom = 84.0
-theme = ExtResource("2_xfvoa")
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer" unique_id=927471093]
+layout_mode = 2
+size_flags_vertical = 4
+columns = 2
 
-[node name="SellFoodButton" type="Button" parent="." unique_id=926959183]
-offset_left = 118.0
-offset_top = 96.0
-offset_right = 244.0
-offset_bottom = 125.0
+[node name="FoodLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=66111823]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Food: 0 cans (25 max)"
+
+[node name="SellFoodButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=926959183]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 can"
 
-[node name="SellWaterButton" type="Button" parent="." unique_id=498200231]
-offset_left = 322.0
-offset_top = 96.0
-offset_right = 448.0
-offset_bottom = 127.0
+[node name="WaterLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=1322587892]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Water: 0 bottles (25 max)"
+
+[node name="SellWaterButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=498200231]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 bottle"
 
-[node name="SellPowerButton" type="Button" parent="." unique_id=1573783916]
-offset_left = 523.0
-offset_top = 96.0
-offset_right = 649.0
-offset_bottom = 127.0
+[node name="PowerLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=271492164]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Power: 0 kWh (25 max)"
+
+[node name="SellPowerButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=1573783916]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 kWh"
 
-[node name="MoneyLabel" type="Label" parent="." unique_id=259807105]
-offset_left = 751.0
-offset_top = 49.0
-offset_right = 791.0
-offset_bottom = 72.0
+[node name="MoneyLabel" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=259807105]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
+text = "
+Money: $0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="FoodPassiveUpgradeButton" type="Button" parent="." unique_id=475322819]
-offset_left = 142.81195
-offset_top = 323.2323
-offset_right = 379.0
-offset_bottom = 404.0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1933971720]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -356.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=759968761]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1832306097]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Upgrades  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1318969601]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=327724830]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1951908625]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Food:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FoodPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=475322819]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Passive Gen"
 
-[node name="FoodManualUpgradeButton" type="Button" parent="." unique_id=814890174]
-offset_left = 400.0
-offset_top = 326.0
-offset_right = 602.0
-offset_bottom = 407.0
+[node name="FoodManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=814890174]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Manual Gen"
 
-[node name="FoodStorageUpgradeButton" type="Button" parent="." unique_id=339811370]
-offset_left = 643.0
-offset_top = 329.0
-offset_right = 854.0
-offset_bottom = 406.0
+[node name="FoodStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=339811370]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Storage"
 
-[node name="WaterPassiveUpgradeButton" type="Button" parent="." unique_id=252126099]
-offset_left = 144.0
-offset_top = 436.0
-offset_right = 375.18805
-offset_bottom = 523.0
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1753677153]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1365782515]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1866428065]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Water: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=252126099]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Passive Gen"
 
-[node name="WaterManualUpgradeButton" type="Button" parent="." unique_id=1867201579]
-offset_left = 407.0
-offset_top = 438.0
-offset_right = 601.0
-offset_bottom = 523.0
+[node name="WaterManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1867201579]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Manual Gen"
 
-[node name="WaterStorageUpgradeButton" type="Button" parent="." unique_id=688846907]
-offset_left = 645.0
-offset_top = 434.0
-offset_right = 856.0
-offset_bottom = 520.0
+[node name="WaterStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=688846907]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Storage"
 
-[node name="PowerPassiveUpgradeButton" type="Button" parent="." unique_id=659540335]
-offset_left = 144.0
-offset_top = 547.0
-offset_right = 378.0
-offset_bottom = 626.0
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=918754138]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1900573134]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=704678850]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Power:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PowerPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=659540335]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Passive Gen"
 
-[node name="PowerManualUpgradeButton" type="Button" parent="." unique_id=1593698858]
-offset_left = 408.0
-offset_top = 548.0
-offset_right = 603.0
-offset_bottom = 626.0
+[node name="PowerManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1593698858]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Manual Gen"
 
-[node name="PowerStorageUpgradeButton" type="Button" parent="." unique_id=1247042677]
-offset_left = 646.0
-offset_top = 541.0
-offset_right = 851.0
-offset_bottom = 626.0
+[node name="PowerStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1247042677]
+layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Storage"
 
-[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="SellFoodButton" to="." method="_on_sell_food_button_pressed"]
-[connection signal="pressed" from="SellWaterButton" to="." method="_on_sell_water_button_pressed"]
-[connection signal="pressed" from="SellPowerButton" to="." method="_on_sell_power_button_pressed"]
-[connection signal="pressed" from="FoodPassiveUpgradeButton" to="." method="_on_food_passive_upgrade_button_pressed"]
-[connection signal="pressed" from="FoodManualUpgradeButton" to="." method="_on_food_manual_upgrade_button_pressed"]
-[connection signal="pressed" from="FoodStorageUpgradeButton" to="." method="_on_food_storage_upgrade_button_pressed"]
-[connection signal="pressed" from="WaterPassiveUpgradeButton" to="." method="_on_water_passive_upgrade_button_pressed"]
-[connection signal="pressed" from="WaterManualUpgradeButton" to="." method="_on_water_manual_upgrade_button_pressed"]
-[connection signal="pressed" from="WaterStorageUpgradeButton" to="." method="_on_water_storage_upgrade_button_pressed"]
-[connection signal="pressed" from="PowerPassiveUpgradeButton" to="." method="_on_power_passive_upgrade_button_pressed"]
-[connection signal="pressed" from="PowerManualUpgradeButton" to="." method="_on_power_manual_upgrade_button_pressed"]
-[connection signal="pressed" from="PowerStorageUpgradeButton" to="." method="_on_power_storage_upgrade_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=2062763600]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="NextButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=2075633568]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_xfvoa")
+text = "Next"
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellFoodButton" to="." method="_on_sell_food_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellWaterButton" to="." method="_on_sell_water_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellPowerButton" to="." method="_on_sell_power_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodPassiveUpgradeButton" to="." method="_on_food_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodManualUpgradeButton" to="." method="_on_food_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodStorageUpgradeButton" to="." method="_on_food_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterPassiveUpgradeButton" to="." method="_on_water_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterManualUpgradeButton" to="." method="_on_water_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterStorageUpgradeButton" to="." method="_on_water_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerPassiveUpgradeButton" to="." method="_on_power_passive_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerManualUpgradeButton" to="." method="_on_power_manual_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerStorageUpgradeButton" to="." method="_on_power_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/NextButton" to="." method="_on_next_button_pressed"]

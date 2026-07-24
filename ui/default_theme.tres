@@ -1267,7 +1267,7 @@ variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 base_font = SubResource("FontFile_oq6wx")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
-[sub_resource type="Image" id="Image_sjf3k"]
+[sub_resource type="Image" id="Image_i4llc"]
 data = {
 "data": PackedByteArray("/////////////////////w=="),
 "format": "RGBA8",
@@ -1277,13 +1277,21 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_ip3ui"]
-image = SubResource("Image_sjf3k")
+image = SubResource("Image_i4llc")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxukh"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_i4llc"]
+content_margin_left = 0.0
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+color = Color(0.7490196, 0.45882353, 0, 1)
+vertical = true
 
 [resource]
 Button/colors/font_color = Color(0.7490196, 0.45882353, 0, 1)
@@ -1357,3 +1365,5 @@ RichTextLabel/fonts/normal_font = ExtResource("1_i4llc")
 RichTextLabel/icons/horizontal_rule = SubResource("ImageTexture_ip3ui")
 RichTextLabel/styles/focus = SubResource("StyleBoxFlat_xv3vb")
 RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_bxukh")
+VSeparator/constants/separation = 20
+VSeparator/styles/separator = SubResource("StyleBoxLine_i4llc")
