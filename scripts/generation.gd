@@ -25,7 +25,7 @@ func _ready() -> void:
 	day_timer.wait_time = GameState.DAY_LENGTH_IN_S
 	day_timer.start()
 	day_label.text = "Day " + str(GameState.current_day)
-	clock_label.text = "06:00"
+	clock_label.text = "00:00"
 	
 	if GameState.TOTAL_NUM_DAYS - GameState.current_day < 3:
 		var volumes = [0.15, 0.10, 0.05]
@@ -71,8 +71,8 @@ func _process(delta: float) -> void:
 	else:
 		power_progress_bar.value = 0.0
 		
-	var minutes_in = int(floor(720.0 * (1.0 - day_timer.time_left / GameState.DAY_LENGTH_IN_S)))
-	var hours = minutes_in / 60 + 6
+	var minutes_in = int(floor(1440.0 * (1.0 - day_timer.time_left / GameState.DAY_LENGTH_IN_S)))
+	var hours = minutes_in / 60
 	var mins = minutes_in % 60
 	clock_label.text = str(hours).lpad(2, "0") + ":" + str(mins).lpad(2, "0")
 	if day_timer.time_left <= 10.0:

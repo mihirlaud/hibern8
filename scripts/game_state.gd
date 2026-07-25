@@ -13,8 +13,8 @@ enum Upgrades {
 	STORAGE = 2,
 }
 
-const TOTAL_NUM_DAYS = 5
-const DAY_LENGTH_IN_S = 10.0
+const TOTAL_NUM_DAYS = 7
+const DAY_LENGTH_IN_S = 60.0
 const INITIAL_MANUAL_GEN_TIMES: Array = [5.0, 5.0, 5.0]
 const INITIAL_SELL_RATES = [5.0, 8.0, 3.0]
 const MAX_UPGRADE_LEVEL = 10
@@ -25,6 +25,7 @@ const UPGRADE_NAMES = [
 	["Pantry", "Water Tower", "Lithium Batteries"]
 ]
 
+var first_run = true
 var current_day = 0
 var resources = [0.0, 0.0, 0.0]
 var money = 0.0
