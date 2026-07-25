@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://db3a7up3khuvr"]
+
+[ext_resource type="Script" path="res://scenes/upgrade_button.gd" id="1_aml7u"]
+[ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="1_uok10"]
+
+[node name="UpgradeButton" type="Button" unique_id=1138353400]
+theme = ExtResource("1_uok10")
+script = ExtResource("1_aml7u")

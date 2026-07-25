@@ -12,9 +12,14 @@ func _ready() -> void:
 	Audio.play_siren()
 	Audio.set_geiger(1.0)
 	Audio.play_geiger()
-	var food_days = int(floor(GameState.get_food() / 3.0))
-	var water_days = int(floor(GameState.get_water() / 3.0))
-	var power_days = int(floor(GameState.get_power() / 10.0))
+	
+	var food_usage_rate = GameState.usage_rate_food()
+	var water_usage_rate = GameState.usage_rate_water()
+	var power_usage_rate = GameState.usage_rate_power()
+	
+	var food_days = int(floor(GameState.get_food() / food_usage_rate))
+	var water_days = int(floor(GameState.get_water() / water_usage_rate))
+	var power_days = int(floor(GameState.get_power() / power_usage_rate))
 	var actual_days = min(food_days, water_days, power_days)
 	
 	label.text = "Winter begins.\n\n"

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d4kad515asbdq"]
+
+[ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="1_7dicn"]
+
+[node name="Tooltip" type="Control" unique_id=1685701129]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 3
+anchor_right = 0.23400001
+anchor_bottom = 0.13900001
+offset_right = 0.47998047
+offset_bottom = -0.08000946
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=139857753]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7dicn")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1723809820]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_7dicn")
+text = "Hello World"
+horizontal_alignment = 1
+vertical_alignment = 1

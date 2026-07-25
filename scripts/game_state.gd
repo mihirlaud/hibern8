@@ -11,27 +11,31 @@ enum Upgrades {
 	PASSIVE_GEN = 0,
 	MANUAL_GEN = 1,
 	STORAGE = 2,
+	MANUAL_GEN_TIME = 3,
 }
 
 const TOTAL_NUM_DAYS = 7
 const DAY_LENGTH_IN_S = 60.0
-const INITIAL_MANUAL_GEN_TIMES: Array = [5.0, 5.0, 5.0]
-const INITIAL_SELL_RATES = [5.0, 8.0, 3.0]
 const MAX_UPGRADE_LEVEL = 10
-const UPGRADE_COSTS = [25.0, 15.0, 10.0]
+const INITIAL_SELL_RATES = [5.0, 8.0, 3.0]
+const INITIAL_USAGE_RATES = [3.0, 3.0, 10.0]
+const UPGRADE_COSTS = [25.0, 15.0, 10.0, 10.0]
 const UPGRADE_NAMES = [
 	["Auto-Cannery", "Water Purifier", "Solar Panels"],
-	["Meatpacking", "Refill", "Quick Charge"],
-	["Pantry", "Water Tower", "Lithium Batteries"]
+	["Restock", "Refill", "Recharge"],
+	["Pantry", "Water Tower", "Lithium Batteries"],
+	["Microwave Meals", "Water Fountain", "Jump-start"]
 ]
+const MERCHANT_UPGRADE_COST = 4000
+const HIBERNATOR_UPGRADE_COST = 4000
 
 var first_run = true
 var current_day = 0
 var resources = [0.0, 0.0, 0.0]
 var money = 0.0
-var manual_gen_timers = INITIAL_MANUAL_GEN_TIMES
-var sell_rates = INITIAL_SELL_RATES
 var resource_generating = [false, false, false]
+var merchant_bought = false
+var hibernator_bought = false
 
 var upgrades = [
 	[0, 0, 0],
@@ -43,14 +47,41 @@ func init_game():
 	current_day = 0
 	resources = [0.0, 0.0, 0.0]
 	money = 0.0
-	manual_gen_timers = INITIAL_MANUAL_GEN_TIMES
-	sell_rates = INITIAL_SELL_RATES
 	resource_generating = [false, false, false]
 	upgrades = [
 		[0, 0, 0],
 		[0, 0, 0],
+		[0, 0, 0],
 		[0, 0, 0]
 	]
+	merchant_bought = false
+	hibernator_bought = false
+
+func purchase_merchant():
+	if not merchant_bought:
+		merchant_bought = true
+
+func purchase_hibernator():
+	if not hibernator_bought:
+		hibernator_bought = true
+
+func sell_rate(resource):
+	return INITIAL_SELL_RATES[resource] * (2 if merchant_bought else 1)
+func sell_rate_food():
+	return sell_rate(Resources.FOOD)
+func sell_rate_water():
+	return sell_rate(Resources.WATER)
+func sell_rate_power():
+	return sell_rate(Resources.POWER)
+
+func usage_rate(resource):
+	return INITIAL_USAGE_RATES[resource] * (0.5 if hibernator_bought else 1)
+func usage_rate_food():
+	return usage_rate(Resources.FOOD)
+func usage_rate_water():
+	return usage_rate(Resources.WATER)
+func usage_rate_power():
+	return usage_rate(Resources.POWER)
 
 func get_upgrade_name(upgrade_type, resource):
 	return UPGRADE_NAMES[upgrade_type][resource]
@@ -67,6 +98,21 @@ func gen_rate(resource) -> float:
 
 func next_gen_rate(resource) -> float:
 	return (upgrades[Upgrades.PASSIVE_GEN][resource] + 1) * 0.5
+
+func manual_gen_timer(resource) -> float:
+	return 5.0 - 0.5 * upgrades[Upgrades.MANUAL_GEN_TIME][resource] 
+
+func next_manual_gen_timer(resource) -> float:
+	return 5.0 - 0.5 * (upgrades[Upgrades.MANUAL_GEN_TIME][resource] + 1) 
+	
+func next_food_manual_gen_timer() -> float:
+	return next_manual_gen_timer(Resources.FOOD) 
+
+func next_water_manual_gen_timer() -> float:
+	return next_manual_gen_timer(Resources.WATER)
+
+func next_power_manual_gen_timer() -> float:
+	return next_manual_gen_timer(Resources.POWER)
 
 func storage(resource) -> float:
 	return 25 * pow(2, upgrades[Upgrades.STORAGE][resource])
@@ -88,7 +134,7 @@ func run_gen(delta):
 func sell_resource(resource, quantity):
 	if resources[resource] >= quantity:
 		resources[resource] -= quantity
-		money += quantity * sell_rates[resource]
+		money += quantity * sell_rate(resource)
 
 func sell_food(quantity):
 	sell_resource(Resources.FOOD, quantity)
@@ -187,7 +233,7 @@ func next_manual_gen_power() -> float:
 	return next_manual_gen_rate(Resources.POWER)
 
 func timer(resource) -> float:
-	return manual_gen_timers[resource]
+	return manual_gen_timer(resource)
 
 func food_timer() -> float:
 	return timer(Resources.FOOD)
@@ -242,3 +288,15 @@ func upgrade_water_storage():
 	
 func upgrade_power_storage():
 	upgrade_storage(Resources.POWER)
+
+func upgrade_manual_gen_time(resource):
+	upgrade(Upgrades.MANUAL_GEN_TIME, resource)
+
+func upgrade_food_manual_gen_time():
+	upgrade_manual_gen_time(Resources.FOOD)
+
+func upgrade_water_manual_gen_time():
+	upgrade_manual_gen_time(Resources.WATER)
+	
+func upgrade_power_manual_gen_time():
+	upgrade_manual_gen_time(Resources.POWER)

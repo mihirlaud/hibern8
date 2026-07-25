@@ -21,13 +21,17 @@ func _ready() -> void:
 		label.text += "[/b] day remains"
 	else:
 		label.text += "[/b] days remain"
+		
+	var food_usage_rate = GameState.usage_rate_food()
+	var water_usage_rate = GameState.usage_rate_water()
+	var power_usage_rate = GameState.usage_rate_power()
 	
-	var food_days = int(floor(GameState.get_food() / 3.0))
-	var water_days = int(floor(GameState.get_water() / 3.0))
-	var power_days = int(floor(GameState.get_power() / 10.0))
+	var food_days = int(floor(GameState.get_food() / food_usage_rate))
+	var water_days = int(floor(GameState.get_water() / water_usage_rate))
+	var power_days = int(floor(GameState.get_power() / power_usage_rate))
 	var actual_days = min(food_days, water_days, power_days)
 	
-	results.append("Every day, you use 3 cans of food, 3 bottles of water, and 10 kWh of power.\n")
+	results.append("Every day, you use " + str(food_usage_rate) + " cans of food, " + str(water_usage_rate) + " bottles of water, and "  + str(power_usage_rate) + " kWh of power.\n")
 	results.append("You have " + str(int(floor(GameState.get_food()))) + " cans of food, which will last you " + str(food_days) + " days.\n")
 	results.append("You have " + str(int(floor(GameState.get_water()))) + " bottles of water, which will last you " + str(water_days) + " days.\n")
 	results.append("You have " + str(int(floor(GameState.get_power()))) + " kWh of power, which will last you " + str(power_days) + " days.\n")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dlmqji8u5nek7" path="res://scripts/shop.gd" id="1_lx5au"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_xfvoa"]
+[ext_resource type="PackedScene" uid="uid://db3a7up3khuvr" path="res://scenes/UpgradeButton.tscn" id="3_2fc2m"]
 [ext_resource type="Shader" uid="uid://dyvc0a6iatl5b" path="res://addons/crt_shader/CRTShader.gdshader" id="3_032fp"]
 [ext_resource type="Texture2D" uid="uid://b7rrbl58e5lm6" path="res://addons/crt_shader/CRTFrame.png" id="4_2fc2m"]
 
@@ -41,11 +42,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -186.5
-offset_right = 186.5
-offset_bottom = 337.0
+offset_left = -334.0
+offset_right = 334.0
+offset_bottom = 275.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=285572396]
 layout_mode = 2
@@ -141,7 +143,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -356.0
+offset_top = -430.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 100
@@ -149,13 +151,7 @@ theme_override_constants/margin_right = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=759968761]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1832306097]
-layout_mode = 2
-theme = ExtResource("2_xfvoa")
-text = "Upgrades  "
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1318969601]
 layout_mode = 2
@@ -171,12 +167,8 @@ text = "Food:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FoodPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=475322819]
+[node name="FoodPassiveUpgradeButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1138353400 instance=ExtResource("3_2fc2m")]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_xfvoa")
-text = "Upgrade Food
-Passive Gen"
 
 [node name="FoodManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=814890174]
 layout_mode = 2
@@ -191,6 +183,13 @@ size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Storage"
+
+[node name="FoodFasterUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=878799459]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_xfvoa")
+text = "Upgrade 
+Manual Gen Timer"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1753677153]
 layout_mode = 2
@@ -228,6 +227,13 @@ theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Storage"
 
+[node name="WaterFasterUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2060906472]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_xfvoa")
+text = "Upgrade 
+Manual Gen Timer"
+
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=918754138]
 layout_mode = 2
 theme = ExtResource("2_xfvoa")
@@ -263,6 +269,30 @@ size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Storage"
+
+[node name="PowerFasterUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1949818622]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_xfvoa")
+text = "Upgrade 
+Manual Gen Timer"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1237322558]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DoubleSellButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1538995620]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xfvoa")
+text = "Double Sell Price
+$0"
+
+[node name="HalveUsageButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1640829211]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xfvoa")
+text = "Halve Usage per Day"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=2062763600]
 layout_mode = 2
@@ -316,10 +346,15 @@ texture = ExtResource("4_2fc2m")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodPassiveUpgradeButton" to="." method="_on_food_passive_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodManualUpgradeButton" to="." method="_on_food_manual_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodStorageUpgradeButton" to="." method="_on_food_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodFasterUpgradeButton" to="." method="_on_food_faster_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterPassiveUpgradeButton" to="." method="_on_water_passive_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterManualUpgradeButton" to="." method="_on_water_manual_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterStorageUpgradeButton" to="." method="_on_water_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/WaterFasterUpgradeButton" to="." method="_on_water_faster_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerPassiveUpgradeButton" to="." method="_on_power_passive_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerManualUpgradeButton" to="." method="_on_power_manual_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerStorageUpgradeButton" to="." method="_on_power_storage_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerFasterUpgradeButton" to="." method="_on_power_faster_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/DoubleSellButton" to="." method="_on_double_sell_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/HalveUsageButton" to="." method="_on_halve_usage_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/NextButton" to="." method="_on_next_button_pressed"]
