@@ -13,6 +13,7 @@ var result_string_set = [false, false, false, false, false]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Audio.stop_geiger()
 	elapsed_time = 0.0
 	var days_left = str(GameState.TOTAL_NUM_DAYS - GameState.current_day)
 	label.text = "Day [b]" + str(GameState.current_day) + "[/b] ends.\n\n[b]" + days_left

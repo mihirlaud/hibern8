@@ -26,6 +26,11 @@ func _ready() -> void:
 	day_timer.start()
 	day_label.text = "Day " + str(GameState.current_day)
 	clock_label.text = "06:00"
+	
+	if GameState.TOTAL_NUM_DAYS - GameState.current_day < 3:
+		var volumes = [0.5, 0.25, 0.10]
+		Audio.set_geiger(volumes[GameState.TOTAL_NUM_DAYS - GameState.current_day])
+		Audio.play_geiger()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -4,7 +4,9 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Audio.play_bg_music()
-
+	Audio.stop_siren()
+	Audio.mute_geiger()
+	Audio.stop_geiger()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
