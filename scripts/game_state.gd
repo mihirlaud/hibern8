@@ -13,7 +13,7 @@ enum Upgrades {
 	STORAGE = 2,
 }
 
-const TOTAL_NUM_DAYS = 2
+const TOTAL_NUM_DAYS = 7
 const DAY_LENGTH_IN_S = 60.0
 const INITIAL_MANUAL_GEN_TIMES: Array = [5.0, 5.0, 5.0]
 const INITIAL_SELL_RATES = [5.0, 8.0, 3.0]
