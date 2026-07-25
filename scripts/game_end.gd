@@ -8,6 +8,7 @@ var elapsed_time = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Audio.stop_bg_music()
 	var food_days = int(floor(GameState.get_food() / 3.0))
 	var water_days = int(floor(GameState.get_water() / 3.0))
 	var power_days = int(floor(GameState.get_power() / 10.0))
