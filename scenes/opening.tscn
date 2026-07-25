@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://dmhpsrbhlemxf" path="res://scripts/opening.gd" id="1_gafq3"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_y6ged"]
+[ext_resource type="Shader" uid="uid://dyvc0a6iatl5b" path="res://addons/crt_shader/CRTShader.gdshader" id="3_fvetl"]
+[ext_resource type="Texture2D" uid="uid://b7rrbl58e5lm6" path="res://addons/crt_shader/CRTFrame.png" id="4_jo2c7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drfco"]
+shader = ExtResource("3_fvetl")
+shader_parameter/screen_width = 1024.0
+shader_parameter/screen_height = 600.0
+shader_parameter/BarrelPower = 1.01
+shader_parameter/color_bleeding = 1.1
+shader_parameter/bleeding_range_x = 1.0
+shader_parameter/bleeding_range_y = 1.0
+shader_parameter/lines_distance = 4.0
+shader_parameter/scan_size = 2.0
+shader_parameter/scanline_alpha = 0.9
+shader_parameter/lines_velocity = 30.0
 
 [node name="Opening" type="Control" unique_id=125513098]
 layout_mode = 3
@@ -19,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.043137256, 0.043137256, 0.043137256, 1)
 
 [node name="CenterContainer" type="MarginContainer" parent="." unique_id=1377038943]
 layout_mode = 1
@@ -80,3 +95,29 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
+
+[node name="CRT" type="Control" parent="." unique_id=725044459]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CRT" unique_id=1676903453]
+material = SubResource("ShaderMaterial_drfco")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRTFrame" type="TextureRect" parent="CRT" unique_id=1417474882]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("4_jo2c7")
