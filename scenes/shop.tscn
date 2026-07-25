@@ -65,7 +65,7 @@ theme = ExtResource("2_xfvoa")
 [node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer" unique_id=927471093]
 layout_mode = 2
 size_flags_vertical = 4
-columns = 2
+columns = 4
 
 [node name="FoodLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=66111823]
 layout_mode = 2
@@ -77,6 +77,16 @@ layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 can"
 
+[node name="Sell10FoodButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=2133831528]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell 10 can"
+
+[node name="SellAllFoodButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=2139874383]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell all can"
+
 [node name="WaterLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=1322587892]
 layout_mode = 2
 theme = ExtResource("2_xfvoa")
@@ -87,6 +97,16 @@ layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 bottle"
 
+[node name="Sell10WaterButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=1264512529]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell 10 bottle"
+
+[node name="SellAllWaterButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=59010395]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell all bottle"
+
 [node name="PowerLabel" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=271492164]
 layout_mode = 2
 theme = ExtResource("2_xfvoa")
@@ -96,6 +116,16 @@ text = "Power: 0 kWh (25 max)"
 layout_mode = 2
 theme = ExtResource("2_xfvoa")
 text = "Sell 1 kWh"
+
+[node name="Sell10PowerButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=359888407]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell 10 kWh"
+
+[node name="SellAllPowerButton" type="Button" parent="MarginContainer2/VBoxContainer/GridContainer" unique_id=904252252]
+layout_mode = 2
+theme = ExtResource("2_xfvoa")
+text = "Sell all kWh"
 
 [node name="MoneyLabel" type="Label" parent="MarginContainer2/VBoxContainer" unique_id=259807105]
 layout_mode = 2
@@ -275,8 +305,14 @@ mouse_filter = 2
 texture = ExtResource("4_2fc2m")
 
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellFoodButton" to="." method="_on_sell_food_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/Sell10FoodButton" to="." method="_on_sell_10_food_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellAllFoodButton" to="." method="_on_sell_all_food_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellWaterButton" to="." method="_on_sell_water_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/Sell10WaterButton" to="." method="_on_sell_10_water_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellAllWaterButton" to="." method="_on_sell_all_water_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellPowerButton" to="." method="_on_sell_power_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/Sell10PowerButton" to="." method="_on_sell_10_power_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/GridContainer/SellAllPowerButton" to="." method="_on_sell_all_power_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodPassiveUpgradeButton" to="." method="_on_food_passive_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodManualUpgradeButton" to="." method="_on_food_manual_upgrade_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/FoodStorageUpgradeButton" to="." method="_on_food_storage_upgrade_button_pressed"]

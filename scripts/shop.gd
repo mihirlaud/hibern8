@@ -18,6 +18,12 @@ extends Control
 @onready var sell_food_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellFoodButton
 @onready var sell_water_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellWaterButton
 @onready var sell_power_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellPowerButton
+@onready var sell_10_food_button: Button = $MarginContainer2/VBoxContainer/GridContainer/Sell10FoodButton
+@onready var sell_all_food_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellAllFoodButton
+@onready var sell_10_water_button: Button = $MarginContainer2/VBoxContainer/GridContainer/Sell10WaterButton
+@onready var sell_all_water_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellAllWaterButton
+@onready var sell_10_power_button: Button = $MarginContainer2/VBoxContainer/GridContainer/Sell10PowerButton
+@onready var sell_all_power_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellAllPowerButton
 
 func _ready() -> void:
 	pass
@@ -69,6 +75,14 @@ func _process(delta: float) -> void:
 	sell_food_button.text = " Sell 1 can for $" + str(int(floor(GameState.sell_rates[GameState.Resources.FOOD]))) + " "
 	sell_water_button.text = " Sell 1 bottle for $" + str(int(floor(GameState.sell_rates[GameState.Resources.WATER]))) + " "
 	sell_power_button.text = " Sell 1 kWh for $" + str(int(floor(GameState.sell_rates[GameState.Resources.POWER]))) + " "
+	
+	sell_10_food_button.text = " Sell 10 cans for $" + str(10 * int(floor(GameState.sell_rates[GameState.Resources.FOOD]))) + " "
+	sell_10_water_button.text = " Sell 10 bottle for $" + str(10 * int(floor(GameState.sell_rates[GameState.Resources.WATER]))) + " "
+	sell_10_power_button.text = " Sell 10 kWh for $" + str(10 * int(floor(GameState.sell_rates[GameState.Resources.POWER]))) + " "
+
+	sell_all_food_button.text = " Sell all cans for $" + str(int(floor(GameState.get_food())) * int(floor(GameState.sell_rates[GameState.Resources.FOOD]))) + " "
+	sell_all_water_button.text = " Sell all bottle for $" + str(int(floor(GameState.get_water())) * int(floor(GameState.sell_rates[GameState.Resources.WATER]))) + " "
+	sell_all_power_button.text = " Sell all kWh for $" + str(int(floor(GameState.get_power())) * int(floor(GameState.sell_rates[GameState.Resources.POWER]))) + " "
 
 func _on_next_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/day-start.tscn")
@@ -110,3 +124,27 @@ func _on_power_manual_upgrade_button_pressed() -> void:
 
 func _on_power_storage_upgrade_button_pressed() -> void:
 	GameState.upgrade_power_storage()
+
+
+func _on_sell_10_food_button_pressed() -> void:
+	GameState.sell_food(10)
+
+
+func _on_sell_all_food_button_pressed() -> void:
+	GameState.sell_food(int(floor(GameState.get_food())))
+
+
+func _on_sell_10_water_button_pressed() -> void:
+	GameState.sell_water(10)
+
+
+func _on_sell_all_water_button_pressed() -> void:
+	GameState.sell_water(int(floor(GameState.get_water())))
+
+
+func _on_sell_10_power_button_pressed() -> void:
+	GameState.sell_power(10)
+
+
+func _on_sell_all_power_button_pressed() -> void:
+	GameState.sell_power(int(floor(GameState.get_power())))

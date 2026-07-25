@@ -36,6 +36,34 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
+[node name="DayLabel" type="Label" parent="." unique_id=1254028460]
+layout_mode = 1
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 115.0
+offset_bottom = 98.0
+theme = ExtResource("2_tqrgb")
+theme_override_font_sizes/font_size = 24
+text = "Day 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClockLabel" type="Label" parent="." unique_id=479947938]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -147.0
+offset_top = 75.0
+offset_right = -75.0
+offset_bottom = 105.0
+grow_horizontal = 0
+theme = ExtResource("2_tqrgb")
+theme_override_font_sizes/font_size = 24
+text = "06:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1252767799]
 layout_mode = 1
 anchors_preset = 14
@@ -152,15 +180,6 @@ text = "Power: 0 kWh"
 fit_content = true
 scroll_active = false
 vertical_alignment = 1
-
-[node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1321415644]
-layout_mode = 2
-theme = ExtResource("2_tqrgb")
-text = "
-0 s"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="FoodGenTimer" type="Timer" parent="." unique_id=466515332]
 one_shot = true

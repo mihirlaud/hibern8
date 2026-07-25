@@ -6,7 +6,6 @@ extends Control
 @onready var water_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/WaterLabel
 @onready var power_gen_button: Button = $MarginContainer/VBoxContainer/GridContainer/PowerGenButton
 @onready var power_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/PowerLabel
-@onready var timer_label: Label = $MarginContainer/VBoxContainer/TimerLabel
 
 @onready var day_timer: Timer = $DayTimer
 
@@ -18,10 +17,15 @@ extends Control
 @onready var water_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/GridContainer/WaterGenButton/WaterProgressBar
 @onready var power_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/GridContainer/PowerGenButton/PowerProgressBar
 
+@onready var day_label: Label = $DayLabel
+@onready var clock_label: Label = $ClockLabel
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	day_timer.wait_time = GameState.DAY_LENGTH_IN_S
 	day_timer.start()
+	day_label.text = "Day " + str(GameState.current_day)
+	clock_label.text = "06:00"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -36,7 +40,6 @@ func _process(delta: float) -> void:
 	water_first_half = water_first_half.rpad(length, " ")
 	power_first_half = power_first_half.rpad(length, " ")
 	
-	timer_label.text = "\n" + str(round(day_timer.time_left * 10) / 10.0) + " s"
 	food_label.text = food_first_half + " " + get_progress_bar(GameState.Resources.FOOD)
 	water_label.text = water_first_half + " " + get_progress_bar(GameState.Resources.WATER)
 	power_label.text = power_first_half + " " + get_progress_bar(GameState.Resources.POWER)
@@ -55,6 +58,14 @@ func _process(delta: float) -> void:
 		power_progress_bar.value = 100.0 * (1.0 - power_gen_timer.time_left / GameState.power_timer())
 	else:
 		power_progress_bar.value = 0.0
+		
+	var minutes_in = int(floor(720.0 * (1.0 - day_timer.time_left / GameState.DAY_LENGTH_IN_S)))
+	var hours = minutes_in / 60 + 6
+	var mins = minutes_in % 60
+	clock_label.text = str(hours).lpad(2, "0") + ":" + str(mins).lpad(2, "0")
+	if day_timer.time_left <= 10.0:
+		if round(day_timer.time_left) > day_timer.time_left:
+			clock_label.text = ""
 
 func get_progress_bar(resource) -> String:
 	var amount_possessed = GameState.get_resource(resource)

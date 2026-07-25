@@ -14,11 +14,16 @@ enum Upgrades {
 }
 
 const TOTAL_NUM_DAYS = 2
-const DAY_LENGTH_IN_S = 10.0
+const DAY_LENGTH_IN_S = 60.0
 const INITIAL_MANUAL_GEN_TIMES: Array = [5.0, 5.0, 5.0]
-const INITIAL_SELL_RATES = [5.0, 10.0, 2.0]
+const INITIAL_SELL_RATES = [5.0, 8.0, 3.0]
 const MAX_UPGRADE_LEVEL = 10
-const UPGRADE_COSTS = [15.0, 25.0, 10.0]
+const UPGRADE_COSTS = [25.0, 15.0, 10.0]
+const UPGRADE_NAMES = [
+	["Auto-Cannery", "Water Purifier", "Solar Panels"],
+	["Meatpacking", "Refill", "Quick Charge"],
+	["Pantry", "Water Tower", "Lithium Batteries"]
+]
 
 var current_day = 0
 var resources = [0.0, 0.0, 0.0]
@@ -26,10 +31,11 @@ var money = 0.0
 var manual_gen_timers = INITIAL_MANUAL_GEN_TIMES
 var sell_rates = INITIAL_SELL_RATES
 var resource_generating = [false, false, false]
+
 var upgrades = [
-	[1, 1, 1],
-	[1, 1, 1],
-	[1, 1, 1]
+	[0, 0, 0],
+	[0, 0, 0],
+	[0, 0, 0]
 ]
 
 func init_game():
@@ -40,32 +46,38 @@ func init_game():
 	sell_rates = INITIAL_SELL_RATES
 	resource_generating = [false, false, false]
 	upgrades = [
-		[1, 1, 1],
-		[1, 1, 1],
-		[1, 1, 1]
+		[0, 0, 0],
+		[0, 0, 0],
+		[0, 0, 0]
 	]
+
+func get_upgrade_name(upgrade_type, resource):
+	return UPGRADE_NAMES[upgrade_type][resource]
+
+func get_upgrade_level(upgrade_type, resource):
+	return upgrades[upgrade_type][resource]
 
 func start_day():
 	current_day += 1
 	resource_generating = [false, false, false]
 
 func gen_rate(resource) -> float:
-	return (upgrades[Upgrades.PASSIVE_GEN][resource] - 1) * 2
+	return upgrades[Upgrades.PASSIVE_GEN][resource] * 0.5
 
 func next_gen_rate(resource) -> float:
-	return (upgrades[Upgrades.PASSIVE_GEN][resource]) * 2
+	return (upgrades[Upgrades.PASSIVE_GEN][resource] + 1) * 0.5
 
 func storage(resource) -> float:
-	return 25 * pow(2, upgrades[Upgrades.STORAGE][resource] - 1)
-
-func next_storage(resource) -> float:
 	return 25 * pow(2, upgrades[Upgrades.STORAGE][resource])
 
+func next_storage(resource) -> float:
+	return 25 * pow(2, upgrades[Upgrades.STORAGE][resource] + 1)
+
 func manual_gen_rate(resource) -> float:
-	return upgrades[Upgrades.MANUAL_GEN][resource]
+	return upgrades[Upgrades.MANUAL_GEN][resource] + 1
 
 func next_manual_gen_rate(resource) -> float:
-	return upgrades[Upgrades.MANUAL_GEN][resource] + 1
+	return upgrades[Upgrades.MANUAL_GEN][resource] + 2
 
 func run_gen(delta):
 	for resource in range(Resources.NUM_RESOURCES):
@@ -186,7 +198,7 @@ func power_timer() -> float:
 	return timer(Resources.POWER)
 
 func cost(upgrade_type, resource) -> float:
-	return UPGRADE_COSTS[upgrade_type] * upgrades[upgrade_type][resource]
+	return UPGRADE_COSTS[upgrade_type] * floor(pow(1.8, upgrades[upgrade_type][resource]))
 	
 func upgrade(upgrade_type, resource):
 	if money >= cost(upgrade_type, resource):
