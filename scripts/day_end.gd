@@ -2,13 +2,14 @@ extends Control
 
 @onready var label: RichTextLabel = $MarginContainer/VBoxContainer/Label
 @onready var results_label: Label = $MarginContainer/VBoxContainer/ResultsLabel
-@onready var next_button: Button = $MarginContainer/VBoxContainer/NextButton
+@onready var next_button: Button = $MarginContainer/VBoxContainer/MarginContainer/NextButton
 
 const DISPLAY_TIME_IN_S = 4.0
 const WAIT_TIME_IN_S = 1.0
 var elapsed_time = 0.0
 var results = []
 var results_strings = ["\n", "\n", "\n", "\n", ""]
+var result_string_set = [false, false, false, false, false]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,11 +38,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	elapsed_time += delta
 	
+	var prev_vis_char = label.visible_characters
 	label.visible_ratio = min(1.0, elapsed_time / DISPLAY_TIME_IN_S)
+	var new_vis_char = label.visible_characters
+	
+	if prev_vis_char != new_vis_char:
+		Audio.play_blip()
 	
 	for i in range(len(results_strings)):
 		if elapsed_time >= DISPLAY_TIME_IN_S + (i * 1) * WAIT_TIME_IN_S:
-			results_strings[i] = results[i]
+			if not result_string_set[i]:
+				results_strings[i] = results[i]
+				result_string_set[i] = true
+				Audio.play_blop()
 	
 	results_label.text = ""
 	for result_string in results_strings:

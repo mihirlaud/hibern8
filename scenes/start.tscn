@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bhmpmknlpmmx8" path="res://scripts/start.gd" id="1_jaeev"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_u80x2"]
+[ext_resource type="Texture2D" uid="uid://b7rrbl58e5lm6" path="res://addons/crt_shader/CRTFrame.png" id="3_bodal"]
+[ext_resource type="Shader" uid="uid://dyvc0a6iatl5b" path="res://addons/crt_shader/CRTShader.gdshader" id="3_kdmts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkjhy"]
+shader = ExtResource("3_kdmts")
+shader_parameter/screen_width = 1024.0
+shader_parameter/screen_height = 600.0
+shader_parameter/BarrelPower = 1.01
+shader_parameter/color_bleeding = 1.1
+shader_parameter/bleeding_range_x = 1.0
+shader_parameter/bleeding_range_y = 1.0
+shader_parameter/lines_distance = 4.0
+shader_parameter/scan_size = 2.0
+shader_parameter/scanline_alpha = 0.9
+shader_parameter/lines_velocity = 30.0
 
 [node name="Start" type="Control" unique_id=107292208]
 layout_mode = 3
@@ -36,6 +51,7 @@ theme_override_constants/margin_right = 400
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1877739263]
 layout_mode = 2
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2114199792]
 layout_mode = 2
@@ -52,13 +68,40 @@ text = "  /\\\\\\        /\\\\\\  /\\\\\\\\\\\\\\\\\\\\\\  /\\\\\\\\\\\\\\\\\\\\
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1687772002]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer" unique_id=1527903590]
 layout_mode = 2
-theme = ExtResource("2_u80x2")
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1919545777]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer" unique_id=1919545777]
 layout_mode = 2
 theme = ExtResource("2_u80x2")
 text = "Start"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[node name="CRT" type="Control" parent="." unique_id=338390621]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CRT" unique_id=1773160735]
+material = SubResource("ShaderMaterial_pkjhy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRTFrame" type="TextureRect" parent="CRT" unique_id=1605912257]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("3_bodal")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]

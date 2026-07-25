@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bobu7vi414kr" path="res://scripts/generation.gd" id="1_1bwju"]
 [ext_resource type="Theme" uid="uid://dgkyx32qiplpg" path="res://ui/default_theme.tres" id="2_tqrgb"]
+[ext_resource type="Shader" uid="uid://dyvc0a6iatl5b" path="res://addons/crt_shader/CRTShader.gdshader" id="3_uvw2u"]
+[ext_resource type="Texture2D" uid="uid://b7rrbl58e5lm6" path="res://addons/crt_shader/CRTFrame.png" id="4_ebmw0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjpch"]
+shader = ExtResource("3_uvw2u")
+shader_parameter/screen_width = 1024.0
+shader_parameter/screen_height = 600.0
+shader_parameter/BarrelPower = 1.01
+shader_parameter/color_bleeding = 1.1
+shader_parameter/bleeding_range_x = 1.0
+shader_parameter/bleeding_range_y = 1.0
+shader_parameter/lines_distance = 4.0
+shader_parameter/scan_size = 2.0
+shader_parameter/scanline_alpha = 0.9
+shader_parameter/lines_velocity = 30.0
 
 [node name="Generation" type="Control" unique_id=1744729273]
 layout_mode = 3
@@ -31,15 +46,13 @@ offset_top = -187.5
 offset_bottom = 187.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
+theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1466417388]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=950481747]
 layout_mode = 2
@@ -50,42 +63,95 @@ vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=582497885]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_tqrgb")
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1719948614]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
 columns = 2
 
 [node name="FoodGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=262432988]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_tqrgb")
 text = "Can Food"
 
-[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1587798198]
-layout_mode = 2
+[node name="FoodProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/FoodGenButton" unique_id=254423191]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_tqrgb")
-text = "Food: 0 cans"
+show_percentage = false
+
+[node name="FoodLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=2057905849]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_tqrgb")
+bbcode_enabled = true
+text = "Food: 0 cans "
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
 
 [node name="WaterGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=884517857]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_tqrgb")
 text = "Bottle Water"
 
-[node name="WaterLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1594519762]
-layout_mode = 2
+[node name="WaterProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/WaterGenButton" unique_id=55949167]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_tqrgb")
+show_percentage = false
+
+[node name="WaterLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=500106298]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_tqrgb")
+bbcode_enabled = true
 text = "Water: 0 bottles"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
 
 [node name="PowerGenButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=317861278]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_tqrgb")
 text = "Generate Power"
 
-[node name="PowerLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=1342417266]
-layout_mode = 2
+[node name="PowerProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/GridContainer/PowerGenButton" unique_id=925453187]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_tqrgb")
+show_percentage = false
+
+[node name="PowerLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/GridContainer" unique_id=321695848]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_tqrgb")
+bbcode_enabled = true
 text = "Power: 0 kWh"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
 
 [node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1321415644]
 layout_mode = 2
@@ -108,6 +174,32 @@ one_shot = true
 [node name="DayTimer" type="Timer" parent="." unique_id=1267275502]
 wait_time = 10.0
 one_shot = true
+
+[node name="CRT" type="Control" parent="." unique_id=783077581]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CRT" unique_id=552266679]
+material = SubResource("ShaderMaterial_hjpch")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CRTFrame" type="TextureRect" parent="CRT" unique_id=1567616184]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("4_ebmw0")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/FoodGenButton" to="." method="_on_food_gen_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/WaterGenButton" to="." method="_on_water_gen_button_pressed"]

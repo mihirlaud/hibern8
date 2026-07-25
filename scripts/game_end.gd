@@ -20,7 +20,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	elapsed_time += delta
+	var prev_vis_char = label.visible_characters
 	label.visible_ratio = min(1.0, elapsed_time / DISPLAY_TIME_IN_S)
+	var new_vis_char = label.visible_characters
+	
+	if prev_vis_char != new_vis_char:
+		Audio.play_blip()
+	
 	if elapsed_time >= DISPLAY_TIME_IN_S:
 		replay_button.disabled = false
 

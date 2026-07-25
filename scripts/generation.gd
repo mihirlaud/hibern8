@@ -1,11 +1,11 @@
 extends Control
 
 @onready var food_gen_button: Button = $MarginContainer/VBoxContainer/GridContainer/FoodGenButton
-@onready var food_label: Label = $MarginContainer/VBoxContainer/GridContainer/FoodLabel
+@onready var food_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/FoodLabel
 @onready var water_gen_button: Button = $MarginContainer/VBoxContainer/GridContainer/WaterGenButton
-@onready var water_label: Label = $MarginContainer/VBoxContainer/GridContainer/WaterLabel
+@onready var water_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/WaterLabel
 @onready var power_gen_button: Button = $MarginContainer/VBoxContainer/GridContainer/PowerGenButton
-@onready var power_label: Label = $MarginContainer/VBoxContainer/GridContainer/PowerLabel
+@onready var power_label: RichTextLabel = $MarginContainer/VBoxContainer/GridContainer/PowerLabel
 @onready var timer_label: Label = $MarginContainer/VBoxContainer/TimerLabel
 
 @onready var day_timer: Timer = $DayTimer
@@ -13,6 +13,10 @@ extends Control
 @onready var food_gen_timer: Timer = $FoodGenTimer
 @onready var water_gen_timer: Timer = $WaterGenTimer
 @onready var power_gen_timer: Timer = $PowerGenTimer
+
+@onready var food_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/GridContainer/FoodGenButton/FoodProgressBar
+@onready var water_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/GridContainer/WaterGenButton/WaterProgressBar
+@onready var power_progress_bar: ProgressBar = $MarginContainer/VBoxContainer/GridContainer/PowerGenButton/PowerProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,10 +27,49 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GameState.run_gen(delta)
 	
+	var food_first_half = "Food: " + str(int(floor(GameState.get_food()))) + " / " + str(int(floor(GameState.get_food_max())))
+	var water_first_half = "Water: " + str(int(floor(GameState.get_water()))) + " / " + str(int(floor(GameState.get_water_max())))
+	var power_first_half = "Power: " + str(int(floor(GameState.get_power()))) + " / " + str(int(floor(GameState.get_power_max())))
+	
+	var length = max(food_first_half.length(), water_first_half.length(), power_first_half.length())
+	food_first_half = food_first_half.rpad(length, " ")
+	water_first_half = water_first_half.rpad(length, " ")
+	power_first_half = power_first_half.rpad(length, " ")
+	
 	timer_label.text = "\n" + str(round(day_timer.time_left * 10) / 10.0) + " s"
-	food_label.text = "Food: " + str(floor(GameState.get_food())) + " / " + str(floor(GameState.get_food_max())) + " cans"
-	water_label.text = "Water: " + str(floor(GameState.get_water())) + " / " + str(floor(GameState.get_water_max())) + " bottles"
-	power_label.text = "Power: " + str(floor(GameState.get_power())) + " / " + str(floor(GameState.get_power_max())) + " kWh"
+	food_label.text = food_first_half + " " + get_progress_bar(GameState.Resources.FOOD)
+	water_label.text = water_first_half + " " + get_progress_bar(GameState.Resources.WATER)
+	power_label.text = power_first_half + " " + get_progress_bar(GameState.Resources.POWER)
+	
+	if food_gen_timer.time_left != 0.0:
+		food_progress_bar.value = 100.0 * (1.0 - food_gen_timer.time_left / GameState.food_timer())
+	else:
+		food_progress_bar.value = 0.0
+		
+	if water_gen_timer.time_left != 0.0:
+		water_progress_bar.value = 100.0 * (1.0 - water_gen_timer.time_left / GameState.water_timer())
+	else:
+		water_progress_bar.value = 0.0
+		
+	if power_gen_timer.time_left != 0.0:
+		power_progress_bar.value = 100.0 * (1.0 - power_gen_timer.time_left / GameState.power_timer())
+	else:
+		power_progress_bar.value = 0.0
+
+func get_progress_bar(resource) -> String:
+	var amount_possessed = GameState.get_resource(resource)
+	var amount_max = GameState.get_resource_max(resource)
+	var resource_per_box = int(amount_max / 25)
+	var num_boxes = int(floor(amount_possessed / resource_per_box))
+	var return_value = "["
+	for i in range(num_boxes):
+		return_value += "[char=2588]"
+	for i in range(25 - num_boxes):
+		return_value += "."
+	return_value += "]"
+	
+	return return_value
+	
 
 func _on_day_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://scenes/day-end.tscn")
