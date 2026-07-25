@@ -28,13 +28,20 @@ func _ready() -> void:
 	clock_label.text = "06:00"
 	
 	if GameState.TOTAL_NUM_DAYS - GameState.current_day < 3:
-		var volumes = [0.5, 0.25, 0.10]
+		var volumes = [0.15, 0.10, 0.05]
 		Audio.set_geiger(volumes[GameState.TOTAL_NUM_DAYS - GameState.current_day])
 		Audio.play_geiger()
+	
+	if GameState.TOTAL_NUM_DAYS - GameState.current_day < 5:
+		var volumes = [0.5, 0.4, 0.3, 0.2, 0.1]
+		Audio.set_tick(volumes[GameState.TOTAL_NUM_DAYS - GameState.current_day])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	GameState.run_gen(delta)
+	
+	if floor(day_timer.time_left - delta) != floor(day_timer.time_left):
+		Audio.play_tick()
 	
 	var food_first_half = "Food: " + str(int(floor(GameState.get_food()))) + " / " + str(int(floor(GameState.get_food_max())))
 	var water_first_half = "Water: " + str(int(floor(GameState.get_water()))) + " / " + str(int(floor(GameState.get_water_max())))

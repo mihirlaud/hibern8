@@ -7,6 +7,7 @@ func _ready() -> void:
 	Audio.stop_siren()
 	Audio.mute_geiger()
 	Audio.stop_geiger()
+	Audio.mute_tick()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

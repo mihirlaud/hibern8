@@ -5,6 +5,7 @@ var blop_player = AudioStreamPlayer.new()
 var bg_music_player = AudioStreamPlayer.new()
 var siren_player = AudioStreamPlayer.new()
 var geiger_player = AudioStreamPlayer.new()
+var tick_player = AudioStreamPlayer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,10 @@ func _ready() -> void:
 	geiger_player.stream = preload("res://ui/audio/geiger.wav")
 	geiger_player.volume_linear = 0.0
 	add_child(geiger_player)
+	
+	tick_player.stream = preload("res://ui/audio/tick.wav")
+	tick_player.volume_linear = 0.0
+	add_child(tick_player)
 
 func play_blip() -> void:
 	blip_player.play()
@@ -60,3 +65,12 @@ func mute_geiger() -> void:
 
 func set_geiger(value) -> void:
 	geiger_player.volume_linear = value
+	
+func play_tick() -> void:
+	tick_player.play()
+
+func mute_tick() -> void:
+	tick_player.volume_linear = 0.0
+
+func set_tick(value) -> void:
+	tick_player.volume_linear = value
