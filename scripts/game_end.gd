@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	label.text = "Winter begins.\n\n"
 	label.text += "You will only survive [b]" + str(actual_days) + "[/b] days.\n"
+	replay_button.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -128,18 +128,21 @@ vertical_alignment = 1
 
 [node name="FoodPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=475322819]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Passive Gen"
 
 [node name="FoodManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=814890174]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Manual Gen"
 
 [node name="FoodStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=339811370]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Food
 Storage"
@@ -161,18 +164,21 @@ vertical_alignment = 1
 
 [node name="WaterPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=252126099]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Passive Gen"
 
 [node name="WaterManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1867201579]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Manual Gen"
 
 [node name="WaterStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=688846907]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Water
 Storage"
@@ -194,18 +200,21 @@ vertical_alignment = 1
 
 [node name="PowerPassiveUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=659540335]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Passive Gen"
 
 [node name="PowerManualUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1593698858]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Manual Gen"
 
 [node name="PowerStorageUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1247042677]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xfvoa")
 text = "Upgrade Power
 Storage"

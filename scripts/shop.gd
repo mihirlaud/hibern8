@@ -15,6 +15,10 @@ extends Control
 @onready var power_manual_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerManualUpgradeButton
 @onready var power_storage_upgrade_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/PowerStorageUpgradeButton
 
+@onready var sell_food_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellFoodButton
+@onready var sell_water_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellWaterButton
+@onready var sell_power_button: Button = $MarginContainer2/VBoxContainer/GridContainer/SellPowerButton
+
 func _ready() -> void:
 	pass
 
@@ -61,6 +65,10 @@ func _process(delta: float) -> void:
 	set_button_enabled(power_passive_upgrade_button, GameState.Upgrades.PASSIVE_GEN, GameState.Resources.POWER)
 	set_button_enabled(power_manual_upgrade_button, GameState.Upgrades.MANUAL_GEN, GameState.Resources.POWER)
 	set_button_enabled(power_storage_upgrade_button, GameState.Upgrades.STORAGE, GameState.Resources.POWER)
+
+	sell_food_button.text = " Sell 1 can for $" + str(int(floor(GameState.sell_rates[GameState.Resources.FOOD]))) + " "
+	sell_water_button.text = " Sell 1 bottle for $" + str(int(floor(GameState.sell_rates[GameState.Resources.WATER]))) + " "
+	sell_power_button.text = " Sell 1 kWh for $" + str(int(floor(GameState.sell_rates[GameState.Resources.POWER]))) + " "
 
 func _on_next_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/day-start.tscn")
