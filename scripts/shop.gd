@@ -32,9 +32,13 @@ extends Control
 @onready var double_sell_button: Button = $MarginContainer/VBoxContainer/HBoxContainer2/DoubleSellButton
 @onready var halve_usage_button: Button = $MarginContainer/VBoxContainer/HBoxContainer2/HalveUsageButton
 
+@onready var day_label: Label = $DayLabel
+
 func _ready() -> void:
 	double_sell_button.text = "Double Sell Price of Every Resource\n$" + str(int(floor(GameState.MERCHANT_UPGRADE_COST)))
 	halve_usage_button.text = "Halve Usage Per Day of Every Resource\n$" + str(int(floor(GameState.HIBERNATOR_UPGRADE_COST)))
+	var days_left = str(GameState.TOTAL_NUM_DAYS - GameState.current_day)
+	day_label.text = days_left + " day" + ("" if days_left == "1" else "s") + "\nremain" + ("s" if days_left == "1" else "")
 
 func set_text(button, resource, upgrade_type, amount, resource_unit, cost):
 	button.text = "Upgrade " + resource + " " + upgrade_type + "\nto " + str(amount) + " " + resource_unit + "\n$" + str(int(cost))

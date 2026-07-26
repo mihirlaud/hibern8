@@ -37,6 +37,19 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
+[node name="DayLabel" type="Label" parent="." unique_id=750031576]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 147.0
+offset_bottom = 105.0
+theme = ExtResource("2_xfvoa")
+theme_override_font_sizes/font_size = 24
+text = "2 Days
+Remain"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=64914673]
 layout_mode = 1
 anchors_preset = 5
