@@ -59,11 +59,15 @@ func init_game():
 
 func purchase_merchant():
 	if not merchant_bought:
-		merchant_bought = true
+		if money >= MERCHANT_UPGRADE_COST:
+			merchant_bought = true
+			money -= MERCHANT_UPGRADE_COST
 
 func purchase_hibernator():
 	if not hibernator_bought:
-		hibernator_bought = true
+		if money >= HIBERNATOR_UPGRADE_COST:
+			hibernator_bought = true
+			money -= HIBERNATOR_UPGRADE_COST
 
 func sell_rate(resource):
 	return INITIAL_SELL_RATES[resource] * (2 if merchant_bought else 1)

@@ -146,7 +146,6 @@ func _on_water_manual_upgrade_button_pressed() -> void:
 func _on_water_storage_upgrade_button_pressed() -> void:
 	GameState.upgrade_water_storage()
 
-
 func _on_power_passive_upgrade_button_pressed() -> void:
 	GameState.upgrade_power_passive_gen()
 
@@ -156,42 +155,32 @@ func _on_power_manual_upgrade_button_pressed() -> void:
 func _on_power_storage_upgrade_button_pressed() -> void:
 	GameState.upgrade_power_storage()
 
-
 func _on_sell_10_food_button_pressed() -> void:
 	GameState.sell_food(10)
-
 
 func _on_sell_all_food_button_pressed() -> void:
 	GameState.sell_food(int(floor(GameState.get_food())))
 
-
 func _on_sell_10_water_button_pressed() -> void:
 	GameState.sell_water(10)
-
 
 func _on_sell_all_water_button_pressed() -> void:
 	GameState.sell_water(int(floor(GameState.get_water())))
 
-
 func _on_sell_10_power_button_pressed() -> void:
 	GameState.sell_power(10)
-
 
 func _on_sell_all_power_button_pressed() -> void:
 	GameState.sell_power(int(floor(GameState.get_power())))
 
-
 func _on_food_faster_upgrade_button_pressed() -> void:
 	GameState.upgrade_food_manual_gen_time()
-
 
 func _on_water_faster_upgrade_button_pressed() -> void:
 	GameState.upgrade_water_manual_gen_time()
 
-
 func _on_power_faster_upgrade_button_pressed() -> void:
 	GameState.upgrade_power_manual_gen_time()
-
 
 func _on_double_sell_button_pressed() -> void:
 	GameState.purchase_merchant()
